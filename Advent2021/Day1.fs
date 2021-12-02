@@ -17,6 +17,13 @@ let rec foldfunc2 (currentlist: List<string>) lastsum counter =
     | head1 :: head2 :: [head3] when (int head1) + (int head2) + (int head3) > lastsum -> counter
     | _ :: _ :: [_] -> counter
     | _ -> counter
+    
+let rec foldfunc3 currentlist =
+    currentlist
+    |> Seq.map int
+    |> Seq.windowed 4
+    |> Seq.filter (fun (values) -> (values.[0] + values.[1] + values.[2]) < (values.[1] + values.[2] + values.[3]))
+    |> Seq.length
 
 let RunDay1 () =
     let lines = System.IO.File.ReadLines(@"C:\users\dorma\Documents\AdventDay1Input.txt")
@@ -24,3 +31,5 @@ let RunDay1 () =
     printfn "Day 1 Part 1: %i" result
     let result2 = foldfunc2 (Seq.toList lines) 0 -1
     printfn "Day 1 Part 2: %i" result2
+    let result3 = foldfunc3 lines
+    printfn "Day 3 Test1 %i" result3
