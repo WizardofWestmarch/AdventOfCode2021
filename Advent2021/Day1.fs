@@ -18,11 +18,18 @@ let rec foldfunc2 (currentlist: List<string>) lastsum counter =
     | _ :: _ :: [_] -> counter
     | _ -> counter
     
-let rec foldfunc3 currentlist =
+let foldfunc3 currentlist =
     currentlist
     |> Seq.map int
     |> Seq.windowed 4
     |> Seq.filter (fun (values) -> (values.[0] + values.[1] + values.[2]) < (values.[1] + values.[2] + values.[3]))
+    |> Seq.length
+    
+let foldfunc4 currentlist windowsize =
+    currentlist
+    |> Seq.map int
+    |> Seq.windowed windowsize
+    |> Seq.filter (fun (values) -> values |> (fun (newvalues) -> (Seq.sum newvalues) - newvalues.[windowsize - 1] < (Seq.sum newvalues) - newvalues.[0]))
     |> Seq.length
 
 let RunDay1 () =
@@ -33,3 +40,8 @@ let RunDay1 () =
     printfn "Day 1 Part 2: %i" result2
     let result3 = foldfunc3 lines
     printfn "Day 3 Test1 %i" result3
+    let result5 = foldfunc4 lines 2
+    printfn "Day 3 Part 1 experiment %i" result5
+    let result4 = foldfunc4 lines 4
+    printfn "Day 3 Part 2 experiment %i" result4
+    
