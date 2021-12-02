@@ -39,9 +39,9 @@ let RunDay1 () =
     let result2 = foldfunc2 (Seq.toList lines) 0 -1
     printfn "Day 1 Part 2: %i" result2
     let result3 = foldfunc3 lines
-    printfn "Day 3 Test1 %i" result3
+    printfn "Day 1 Test1 %i" result3
     let result5 = foldfunc4 lines 2
-    printfn "Day 3 Part 1 experiment %i" result5
+    printfn "Day 1 Part 1 experiment %i" result5
     let result4 = foldfunc4 lines 4
-    printfn "Day 3 Part 2 experiment %i" result4
+    printfn "Day 1 Part 2 experiment %i" result4
     
