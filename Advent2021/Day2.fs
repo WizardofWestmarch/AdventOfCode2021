@@ -21,6 +21,8 @@ let parselinePart1 (input:string) =
     | "up" :: [x] -> currentdepth <- currentdepth - (int x)
     | "down" :: [x] -> currentdepth<- currentdepth + (int x)
     | _ -> printfn "Hit a bad case"
+    
+
 
 let RunDay2 () =
     let lines = System.IO.File.ReadLines(@"C:\users\dorma\Documents\AdventDay2Input.txt")
