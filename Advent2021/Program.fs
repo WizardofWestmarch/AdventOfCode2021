@@ -10,4 +10,6 @@
 //Advent2021.Day4.RunDay4 () |> ignore
 //Advent2021.Day4P2.RunDay4 () |> ignore
 //Advent2021.Day5.RunDay5 ()
-Advent2021.Day6.RunDay ()
+//Advent2021.Day6.RunDay ()
+Advent2021.Day7.RunDay ()
+
