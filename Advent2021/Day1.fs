@@ -22,14 +22,14 @@ let foldfunc3 currentlist =
     currentlist
     |> Seq.map int
     |> Seq.windowed 4
-    |> Seq.filter (fun (values) -> (values.[0] + values.[1] + values.[2]) < (values.[1] + values.[2] + values.[3]))
+    |> Seq.filter (fun (values) -> (values[0] + values[1] + values[2]) < (values[1] + values[2] + values[3]))
     |> Seq.length
     
 let foldfunc4 currentlist windowsize =
     currentlist
     |> Seq.map int
     |> Seq.windowed windowsize
-    |> Seq.filter (fun (values) -> values |> (fun (newvalues) -> (Seq.sum newvalues) - newvalues.[windowsize - 1] < (Seq.sum newvalues) - newvalues.[0]))
+    |> Seq.filter (fun (values) -> values |> (fun (newvalues) -> (Seq.sum newvalues) - newvalues[windowsize - 1] < (Seq.sum newvalues) - newvalues[0]))
     |> Seq.length
 
 let RunDay1 () =

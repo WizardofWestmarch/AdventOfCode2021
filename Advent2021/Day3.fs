@@ -8,14 +8,14 @@ let rec parseline (lines: List<string>) =
     match lines with
     | [head] ->
             for i in 0 .. 11 do
-                match head.[i] with
-                | '1' -> positionOneCounts.[i] <- positionOneCounts.[i] + 1
-                | _ -> positionZeroCounts.[i] <- positionZeroCounts.[i] + 1
+                match head[i] with
+                | '1' -> positionOneCounts[i] <- positionOneCounts[i] + 1
+                | _ -> positionZeroCounts[i] <- positionZeroCounts[i] + 1
     | head :: rest ->
         for i in 0 .. 11 do
-            match head.[i] with
-            | '1' -> positionOneCounts.[i] <- positionOneCounts.[i] + 1
-            | _ -> positionZeroCounts.[i] <- positionZeroCounts.[i] + 1
+            match head[i] with
+            | '1' -> positionOneCounts[i] <- positionOneCounts[i] + 1
+            | _ -> positionZeroCounts[i] <- positionZeroCounts[i] + 1
         parseline rest
      | [] -> ()
 //I should go back and change the > line to a lamdba that takes the two values so I can pass in if I want > or < "configurably" to manage
@@ -24,10 +24,10 @@ let rec filterLines (position: int) (lines: List<string>) =
     let output =
         lines
         |> List.filter (fun (line) ->
-            if positionOneCounts.[position] > positionZeroCounts.[position] then
-                line.[position] = '1'
+            if positionOneCounts[position] > positionZeroCounts[position] then
+                line[position] = '1'
             else
-                line.[position] = '0')
+                line[position] = '0')
     if position < 10 then
         filterLines (position + 1) output
     else output
@@ -39,11 +39,11 @@ let rec newFilterLines (position: int) (lines: List<string>) =
     let oneOutput =
         lines
         |> List.filter (fun (line) ->
-            line.[position] = '1')
+            line[position] = '1')
     let zeroOutput =
         lines
         |> List.filter (fun (line) ->
-            line.[position] = '0')
+            line[position] = '0')
     let newoutput =
         match zeroOutput with
         | _ when (List.length zeroOutput) > (List.length oneOutput) -> zeroOutput
@@ -61,26 +61,26 @@ let RunDay3 () =
     printfn "Total lines: %i" lenvalue
     printfn "gamma value"
     for i in 0..11 do
-        if positionOneCounts.[i] > positionZeroCounts.[i] then printf "1" else printf "0"
+        if positionOneCounts[i] > positionZeroCounts[i] then printf "1" else printf "0"
     printfn "epsilon value"
     for i in 0..11 do
-        if positionOneCounts.[i] < positionZeroCounts.[i] then printf "1" else printf "0"
+        if positionOneCounts[i] < positionZeroCounts[i] then printf "1" else printf "0"
     for i in 0..11 do
-        printfn "Position '%i' One Count: %i Zero Count: %i" i positionOneCounts.[i] positionZeroCounts.[i]
+        printfn "Position '%i' One Count: %i Zero Count: %i" i positionOneCounts[i] positionZeroCounts[i]
         
     
     let outputvalue = newFilterLines 0 (Seq.toList lines)
     for i in 0..11 do
-        positionOneCounts.[i] <- 0
-        positionZeroCounts.[i] <- 0
+        positionOneCounts[i] <- 0
+        positionZeroCounts[i] <- 0
     parseline outputvalue
     printfn "Oxygen value"
     for i in 0..11 do
-        if positionOneCounts.[i] > positionZeroCounts.[i] then printf "1" else printf "0"
+        if positionOneCounts[i] > positionZeroCounts[i] then printf "1" else printf "0"
     printfn " "
     printfn "CO2 value"
     for i in 0..11 do
-        if positionOneCounts.[i] < positionZeroCounts.[i] then printf "1" else printf "0"
+        if positionOneCounts[i] < positionZeroCounts[i] then printf "1" else printf "0"
     printfn " "
     ()
      
